@@ -7,9 +7,22 @@
     <title>Tech-track Boilerplate App</title>
   </head>
   <body>
-    <h1>Similair Villagers for ACNH</h1>
+    <h1>Similar Villagers for ACNH</h1>
     <h2>Click or Search for a Villager</h2>
-    <div id="filter"></div>
+    <div id="filter">
+      <!-- How to select default value from: https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element-->
+      <select id="gender">
+        <option selected="selected">Gender</option>
+      </select>
+
+      <select id="personality">
+        <option selected="selected">Personality</option>
+      </select>
+
+      <select id="species">
+        <option selected="selected">Species</option>
+      </select>
+    </div>
 
     <!--Something with D3 .appendChild("body") .appendText(villagername)-->
 
