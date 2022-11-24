@@ -8,5 +8,14 @@ import * as d3 from "d3";
 // Importing functions
 import { testFunction } from "./filter";
 
+// global
+/**My data of villagers*/
+const villagers = async () => {
+  const response = await fetch("https://acnhapi.com/v1a/villagers/");
+  const data = await response.json();
+  console.log(data);
+};
+
 // Calling functions
 testFunction();
+villagers();
