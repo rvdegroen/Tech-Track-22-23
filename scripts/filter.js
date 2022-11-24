@@ -1,3 +1,3 @@
-export function testFunction() {
-  console.log("hi");
-}
+export const testFunction = () => {
+  console.log("just testing my server");
+};
