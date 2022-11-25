@@ -3,6 +3,7 @@
   --background-color: #e7e0c3;
   --text-color: #835b27;
   --white: #ffffff;
+  --white-transparent: #ffffff80;
   --scroll-bar: #dbcda6;
   --scroller: #c0b074;
   --filter-background: #f8ffed;
@@ -32,23 +33,66 @@
 /***General styling***/
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background: var(--background-color);
   font-family: sans-serif;
   color: var(--text-color);
   height: 100em;
 }
 
-/***Header styling***/
+/***Nav styling***/
 h1 {
-  margin-top: 80px;
-  margin-bottom: 25px;
+  font-size: 1.5em;
+  margin-left: 1.5em;
+  padding-bottom: 20px;
 }
 
+header {
+  display: flex;
+  background-color: var(--text-color);
+  color: var(--white);
+  flex: 1;
+  padding-top: 30px;
+}
+
+header > div,
+header > nav {
+  flex: 1;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+nav > ul {
+  display: flex;
+  gap: 2em;
+  list-style-type: none;
+}
+
+nav > ul > li {
+  margin-top: 20px;
+  border-bottom: 3px solid var(--white-transparent);
+  text-align: center;
+  width: 100px;
+}
+
+nav > ul > li > a {
+  text-decoration: none;
+  color: var(--white-transparent);
+}
+
+/*Selected tab*/
+.selectedTab {
+  color: var(--white);
+  border-bottom: 4px solid var(--white);
+}
+
+/***Header styling***/
 h2 {
   margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
 }
 
 /***Scrollbar styling***/
@@ -65,4 +109,10 @@ h2 {
 ::-webkit-scrollbar-thumb {
   background: var(--scroller);
   border-radius: 10px;
+}
+
+#filter {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
 }
