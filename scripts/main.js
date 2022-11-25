@@ -17,5 +17,4 @@ const villagers = async () => {
 };
 
 // Calling functions
-testFunction();
 villagers();
