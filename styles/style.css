@@ -112,6 +112,7 @@ nav > ul > li > a:hover {
 
 /***Header styling***/
 h2 {
+  margin-top: 50px;
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
