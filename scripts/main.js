@@ -15,7 +15,7 @@ import { testFunction } from "./filter";
 };*/
 
 // Dropdown filter
-// $html elements
+// $ for html elements
 const $species = document.getElementById("species");
 const $villagers = document.getElementById("villagers");
 
@@ -77,5 +77,3 @@ const filterVillagers = async (event) => {
 };
 
 $species.addEventListener("change", (event) => filterVillagers(event));
-
-// Calling functions
