@@ -156,6 +156,7 @@ input:focus {
   position: relative;
   display: flex;
   min-width: auto;
+  z-index: -1;
 }
 
 /* image in search bar */
