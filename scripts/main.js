@@ -18,6 +18,7 @@ import { testFunction } from "./filter";
 //// Dropdown filter
 // $ stands for html elements
 const $gender = document.getElementById("gender");
+const $personality = document.getElementById("personality");
 const $species = document.getElementById("species");
 const $villagers = document.getElementById("villagers");
 
@@ -44,6 +45,32 @@ const initializeGenders = async () => {
     option.value = gender;
     option.textContent = gender;
     $gender.appendChild(option);
+  }
+};
+
+// function to put available personalities in the dropdown menu as $option element
+const initializePersonalities = async () => {
+  // fetch villagers
+  const response = await fetch("https://acnhapi.com/v1/villagers");
+  // save response as json in variable
+  const villagersObject = await response.json();
+  const villagers = Object.values(villagersObject);
+
+  // use ... to convert array into a set of arguments of a function
+  // filter is to take something out of the object
+  // reduce maps and filters in a single pass
+  const allPersonalities = villagers.reduce(
+    (accumulator, currentValue) => [...accumulator, currentValue.personality],
+    []
+  );
+  // I don't want duplicate values from allSpecies and turn it into an array, so I use Set: https://www.samanthaming.com/tidbits/43-3-ways-to-remove-array-duplicates/
+  const uniquePersonality = Array.from(new Set(allPersonalities));
+  // Make for every value in the array: uniqueSpecies an option for dropdown filter
+  for (const personality of uniquePersonality) {
+    const option = document.createElement("option");
+    option.value = personality;
+    option.textContent = personality;
+    $personality.appendChild(option);
   }
 };
 
@@ -76,6 +103,7 @@ const initializeSpecies = async () => {
 
 ////// Calling functions
 initializeGenders();
+initializePersonalities();
 initializeSpecies();
 
 //
