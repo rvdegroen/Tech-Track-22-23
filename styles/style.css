@@ -59,6 +59,7 @@ header {
   color: var(--white);
   flex: 1;
   padding-top: 30px;
+  z-index: 1;
 }
 
 header > div,
@@ -156,7 +157,6 @@ input:focus {
   position: relative;
   display: flex;
   min-width: auto;
-  z-index: -1;
 }
 
 /* image in search bar */
@@ -212,4 +212,9 @@ select:focus {
   display: flex;
   justify-content: center;
   gap: 1em;
+}
+
+/***Villagers overview styling***/
+.villagers {
+  background-color: red;
 }
