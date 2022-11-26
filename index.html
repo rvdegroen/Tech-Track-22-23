@@ -10,7 +10,7 @@
   <body>
     <header>
       <div>
-        <img src="public/faviconlogo.svg" alt="Similar Villagers for ACNH logo" class="logo" />
+        <img src="/faviconlogo.svg" alt="Similar Villagers for ACNH logo" class="logo" />
         <h1>Similar Villagers for ACNH</h1>
       </div>
       <nav>
@@ -24,7 +24,10 @@
 
     <h2>Click or Search for a Villager</h2>
     <div id="filter">
-      <input type="search" name="search" placeholder="Search by name" />
+      <div class="search-bar">
+        <img src="./images/search-icon.svg" alt="" />
+        <input type="search" name="search" placeholder="Search by name" />
+      </div>
       <!-- How to select default value from: https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element-->
       <select id="gender">
         <option selected="selected">Gender</option>
