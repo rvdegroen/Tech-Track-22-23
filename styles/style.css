@@ -9,6 +9,7 @@
   --filter-background: #f8ffed;
   --filter-text: #f8ffed;
   --filter-text-transparent: #61b53b80;
+  --filter-green: #61b53b;
   --shadow-color: #00000040;
   --black-overlay: #00000080;
   --female-border: #ff9090;
@@ -24,10 +25,13 @@
 
 /***Global styling***/
 
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   font-family: Fot-Seurat Pro B, sans-serif;
+  box-sizing: border-box;
 }
 
 /***General styling***/
@@ -85,6 +89,7 @@ nav > ul > li:hover {
   border-bottom: 4px solid var(--white);
   text-align: center;
   width: 100px;
+  transition: 0.3s;
 }
 
 nav > ul > li > a {
@@ -94,6 +99,7 @@ nav > ul > li > a {
 
 nav > ul > li > a:hover {
   color: var(--white);
+  transition: 0.3s;
 }
 
 .logo {
@@ -116,6 +122,73 @@ h2 {
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
+}
+
+/***Search bar styling***/
+/*input element of search bar*/
+input {
+  border: none;
+  border-radius: 20px;
+  padding: 5px 10px 5px 45px;
+  width: 100%;
+  background-color: var(--filter-text);
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  color: var(--filter-text-transparent);
+}
+
+input::placeholder {
+  color: var(--filter-text-transparent);
+}
+
+input:hover {
+  border: 2px solid var(--filter-text-transparent);
+  transition: 0.3s;
+}
+
+input:active,
+input:focus {
+  border: 2px solid var(--filter-green);
+  outline: none;
+  color: var(--filter-green);
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  min-width: auto;
+}
+
+/* image in search bar */
+.search-bar > img {
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  padding-right: 10px;
+}
+
+/***Dropdown styling***/
+select,
+option {
+  min-width: auto;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 20px;
+  background-color: var(--filter-text);
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  color: var(--filter-green);
+  outline: none;
+}
+
+select:hover {
+  border: 2px solid var(--filter-text-transparent);
+  transition: 0.3s;
+}
+
+select:active,
+select:focus {
+  border: 2px solid var(--filter-green);
+  outline: none;
+  color: var(--filter-green);
 }
 
 /***Scrollbar styling***/
