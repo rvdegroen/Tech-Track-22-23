@@ -14,9 +14,9 @@ import { testFunction } from "./filter";
   console.log(data);
 };*/
 
-////// Functions
-//// Dropdown filter
-// $ stands for html elements
+//// Functions -  $ stands for html elements
+
+// Dropdown filter
 const $gender = document.getElementById("gender");
 const $personality = document.getElementById("personality");
 const $species = document.getElementById("species");
@@ -101,39 +101,73 @@ const initializeSpecies = async () => {
   }
 };
 
-////// Calling functions
+// function to create the html elements of a villager icon
+const createVillagerIcon = (villager) => {
+  const image = document.createElement("img");
+  image.src = villager.icon_uri;
+  $villagers.appendChild(image);
+};
+
+// function for when you first load the page and get to see all villagers unfiltered
+const initializeVillagers = async () => {
+  const response = await fetch("https://acnhapi.com/v1/villagers");
+  const villagersObj = await response.json();
+  const villagers = Object.values(villagersObj);
+
+  for (const villager of villagers) {
+    createVillagerIcon(villager);
+  }
+};
+
+// function for when you use the gender filter on the overview page
+const filterGender = async (event) => {
+  $villagers.innerHTML = "";
+  const response = await fetch("https://acnhapi.com/v1/villagers");
+  const villagersObj = await response.json();
+  const villagers = Object.values(villagersObj);
+  const filteredGender = villagers.filter((villager) => villager.gender === $gender.value);
+
+  for (const villager of filteredGender) {
+    createVillagerIcon(villager);
+  }
+};
+
+// function for when you use the personality filter on the overview page
+const filterPersonality = async (event) => {
+  $villagers.innerHTML = "";
+  const response = await fetch("https://acnhapi.com/v1/villagers");
+  const villagersObj = await response.json();
+  const villagers = Object.values(villagersObj);
+  const filteredPersonality = villagers.filter(
+    (villager) => villager.personality === $personality.value
+  );
+
+  for (const villager of filteredPersonality) {
+    createVillagerIcon(villager);
+  }
+};
+
+// function for when you use the species filter on the overview page
+const filterSpecies = async (event) => {
+  $villagers.innerHTML = "";
+  const response = await fetch("https://acnhapi.com/v1/villagers");
+  const villagersObj = await response.json();
+  const villagers = Object.values(villagersObj);
+  const filteredVillagers = villagers.filter((villager) => villager.species === $species.value);
+
+  for (const villager of filteredVillagers) {
+    createVillagerIcon(villager);
+  }
+};
+
+////// calling functions
+initializeVillagers();
 initializeGenders();
 initializePersonalities();
 initializeSpecies();
 
-//
-// const initializeVillagers = async () => {
-//   const response = await fetch("https://acnhapi.com/v1/villagers");
-//   const villagersObj = await response.json();
-//   const villagers = Object.values(villagersObj);
-//
-//   for (const villager of villagers) {
-//     const image = document.createElement("img");
-//     image.src = villager.icon_uri;
-//     $villagers.appendChild(image);
-//   }
-// };
-//
-// initializeVillagers();
-//
-// const filterVillagers = async (event) => {
-//   $villagers.innerHTML = "";
-//
-//   const response = await fetch("https://acnhapi.com/v1/villagers");
-//   const villagersObj = await response.json();
-//   const villagers = Object.values(villagersObj);
-//   const filteredVillagers = villagers.filter((villager) => villager.species === $species.value);
-//
-//   for (const villager of filteredVillagers) {
-//     const image = document.createElement("img");
-//     image.src = villager.icon_uri;
-//     $villagers.appendChild(image);
-//   }
-// };
-//
-// $species.addEventListener("change", (event) => filterVillagers(event));
+//// event listeners
+// dropdown filters on overview page
+$gender.addEventListener("change", (event) => filterGender(event));
+$personality.addEventListener("change", (event) => filterPersonality(event));
+$species.addEventListener("change", (event) => filterSpecies(event));
