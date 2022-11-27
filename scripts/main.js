@@ -8,27 +8,27 @@ import * as d3 from "d3";
 import { testFunction } from "./filter";
 
 // Data of villagers
-/*const villagers = async () => {
+const fetchVillagers = async () => {
+  // fetch villagers
   const response = await fetch("https://acnhapi.com/v1a/villagers/");
+  // save response as json in variable
   const data = await response.json();
-  console.log(data);
-};*/
+  return data;
+};
 
-//// Functions -  $ stands for html elements
-
-// Dropdown filter
+// dropdown filter variables
 const $gender = document.getElementById("gender");
 const $personality = document.getElementById("personality");
 const $species = document.getElementById("species");
 const $villagers = document.getElementById("villagers");
 
+//// Functions -  $ stands for html elements
+
+// FILTER FUNCTION ----------------------------------------------------------------------------------
 // function to put available genders in the dropdown menu as $option element
 const initializeGenders = async () => {
-  // fetch villagers
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  // save response as json in variable
-  const villagersObject = await response.json();
-  const villagers = Object.values(villagersObject);
+  // fetch villagers function
+  const villagers = await fetchVillagers();
 
   // use ... to convert array into a set of arguments of a function
   // filter is to take something out of the object
@@ -50,11 +50,8 @@ const initializeGenders = async () => {
 
 // function to put available personalities in the dropdown menu as $option element
 const initializePersonalities = async () => {
-  // fetch villagers
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  // save response as json in variable
-  const villagersObject = await response.json();
-  const villagers = Object.values(villagersObject);
+  // fetch villagers function
+  const villagers = await fetchVillagers();
 
   // use ... to convert array into a set of arguments of a function
   // filter is to take something out of the object
@@ -76,11 +73,8 @@ const initializePersonalities = async () => {
 
 // function to put available species in the dropdown menu as $option element
 const initializeSpecies = async () => {
-  // fetch villagers
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  // save response as json in variable
-  const villagersObject = await response.json();
-  const villagers = Object.values(villagersObject);
+  // fetch villagers function
+  const villagers = await fetchVillagers();
 
   // use ... to convert array into a set of arguments of a function
   // filter is to take something out of the object
@@ -103,59 +97,48 @@ const initializeSpecies = async () => {
 
 // function to create the html elements of a villager icon
 const createVillagerIcon = (villager) => {
+  const anchor = document.createElement("a");
   const image = document.createElement("img");
   image.src = villager.icon_uri;
-  $villagers.appendChild(image);
+  anchor.href = `/villager.html?id=${villager.id}`;
+  anchor.appendChild(image);
+  $villagers.appendChild(anchor);
 };
 
 // function for when you first load the page and get to see all villagers unfiltered
 const initializeVillagers = async () => {
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  const villagersObj = await response.json();
-  const villagers = Object.values(villagersObj);
+  // fetch villagers function
+  const villagers = await fetchVillagers();
 
   for (const villager of villagers) {
     createVillagerIcon(villager);
   }
 };
 
-// function for when you use the gender filter on the overview page
-const filterGender = async (event) => {
+// function for when you use the filter on the overview page
+const filterVillager = async (event) => {
   $villagers.innerHTML = "";
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  const villagersObj = await response.json();
-  const villagers = Object.values(villagersObj);
-  const filteredGender = villagers.filter((villager) => villager.gender === $gender.value);
 
-  for (const villager of filteredGender) {
-    createVillagerIcon(villager);
+  // fetch villagers function
+  let villagers = await fetchVillagers();
+
+  // filter function for gender: only the villagers with the same gender value stays
+  if ($gender.value !== "none") {
+    villagers = villagers.filter((villager) => villager.gender === $gender.value);
   }
-};
 
-// function for when you use the personality filter on the overview page
-const filterPersonality = async (event) => {
-  $villagers.innerHTML = "";
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  const villagersObj = await response.json();
-  const villagers = Object.values(villagersObj);
-  const filteredPersonality = villagers.filter(
-    (villager) => villager.personality === $personality.value
-  );
-
-  for (const villager of filteredPersonality) {
-    createVillagerIcon(villager);
+  // filter function for personality: only the villagers with the same personality value stays
+  if ($personality.value !== "none") {
+    villagers = villagers.filter((villager) => villager.personality === $personality.value);
   }
-};
 
-// function for when you use the species filter on the overview page
-const filterSpecies = async (event) => {
-  $villagers.innerHTML = "";
-  const response = await fetch("https://acnhapi.com/v1/villagers");
-  const villagersObj = await response.json();
-  const villagers = Object.values(villagersObj);
-  const filteredVillagers = villagers.filter((villager) => villager.species === $species.value);
+  // filter function for species: only the villagers with the same species value stays
+  if ($species.value !== "none") {
+    villagers = villagers.filter((villager) => villager.species === $species.value);
+  }
 
-  for (const villager of filteredVillagers) {
+  // for every filtered villager, create villager icon
+  for (const villager of villagers) {
     createVillagerIcon(villager);
   }
 };
@@ -168,6 +151,6 @@ initializeSpecies();
 
 //// event listeners
 // dropdown filters on overview page
-$gender.addEventListener("change", (event) => filterGender(event));
-$personality.addEventListener("change", (event) => filterPersonality(event));
-$species.addEventListener("change", (event) => filterSpecies(event));
+$gender.addEventListener("change", (event) => filterVillager(event));
+$personality.addEventListener("change", (event) => filterVillager(event));
+$species.addEventListener("change", (event) => filterVillager(event));
