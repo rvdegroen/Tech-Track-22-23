@@ -25,9 +25,7 @@
 
 /***Global styling***/
 
-*,
-*::before,
-*::after {
+* {
   padding: 0;
   margin: 0;
   font-family: Fot-Seurat Pro B, sans-serif;
@@ -128,10 +126,11 @@ h2 {
 /***Search bar styling***/
 /*input element of search bar*/
 input {
+  height: 36px;
+  width: 212px;
   border: none;
   border-radius: 20px;
   padding: 5px 10px 5px 45px;
-  width: 100%;
   background-color: var(--filter-text);
   box-shadow: 0px 0px 10px var(--shadow-color);
   color: var(--filter-text-transparent);
@@ -170,6 +169,7 @@ input:focus {
 /***Dropdown styling***/
 select,
 option {
+  height: 36px;
   min-width: auto;
   border: none;
   border-radius: 5px;
@@ -215,6 +215,9 @@ select:focus {
 }
 
 /***Villagers overview styling***/
-.villagers {
+#villagers {
+  margin-top: 30px !important;
   background-color: red;
+  margin: 0 auto;
+  max-width: 45%;
 }
