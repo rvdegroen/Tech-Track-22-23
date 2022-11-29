@@ -216,8 +216,24 @@ select:focus {
 
 /***Villagers overview styling***/
 #villagers {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 30px !important;
-  background-color: red;
   margin: 0 auto;
   max-width: 45%;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#villagers > a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+#villagers > a > p {
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  background-color: var(--white);
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
 }
