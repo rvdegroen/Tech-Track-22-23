@@ -123,6 +123,18 @@ h2 {
   justify-content: center;
 }
 
+/***Header detailPage styling***/
+.detailPage h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.detailPage h2 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 /***Search bar styling***/
 /*input element of search bar*/
 input {
@@ -214,15 +226,16 @@ select:focus {
   gap: 1em;
 }
 
-/***Villagers overview styling***/
+/***Villagers div overview styling***/
 #villagers {
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px !important;
   margin: 0 auto;
   max-width: 45%;
-  justify-content: space-between;
-  gap: 10px;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 200px;
 }
 
 #villagers > a {
@@ -237,3 +250,47 @@ select:focus {
   display: flex;
   justify-content: center;
 }
+
+/***Villagers detail page styling***/
+
+/* styling of selected villager*/
+#selectedVillager {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  margin: 0 auto;
+}
+
+/* x/back button*/
+#selectedVillager > a {
+  align-self: flex-end;
+  padding-right: 10px;
+  padding-top: 5px;
+  text-decoration: none;
+}
+
+#selectedVillager > a:hover {
+  opacity: 50%;
+}
+
+/* villager portrait*/
+#selectedVillager > img {
+  width: 120px;
+}
+
+/* villager name*/
+#selectedVillager > h3 {
+  color: var(--white);
+  background-color: var(--female-border);
+  width: 128px;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+}
+
+/*styling for similar villagers*/
