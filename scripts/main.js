@@ -99,9 +99,12 @@ const initializeSpecies = async () => {
 const createVillagerIcon = (villager) => {
   const anchor = document.createElement("a");
   const image = document.createElement("img");
+  const p = document.createElement("p");
   image.src = villager.icon_uri;
   anchor.href = `/villager.html?id=${villager.id}`;
+  p.textContent = villager.name["name-EUen"];
   anchor.appendChild(image);
+  anchor.appendChild(p);
   $villagers.appendChild(anchor);
 };
 
