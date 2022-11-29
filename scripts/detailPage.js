@@ -19,13 +19,26 @@ const fetchVillager = async (id) => {
 
 //
 const showData = async () => {
+  // fetch villager with id
   const villager = await fetchVillager(villagerId);
-  const h2 = document.getElementById("h2Villager");
+  // create or get html elements
+  const $h2 = document.getElementById("h2Villager");
+  const $divSelectedVillager = document.getElementById("selectedVillager");
+  //const $divSimilarVillagers = getElementById("similarVillagers");
+  // const $table = document.getElementById("table");
+  const image = document.createElement("img");
+  const h3 = document.createElement("h3");
+  // getting data
+  image.src = villager.icon_uri;
   // to be able to use the - in the name, I need to use [] instead of .
-  h2.textContent = `${1} Similar Villager like ${villager.name["name-EUen"]}`;
+  $h2.textContent = `${1} Similar Villager like ${villager.name["name-EUen"]}`;
+  // div of selected villager
+  h3.textContent = villager.name["name-EUen"];
+  $divSelectedVillager.appendChild(image);
+  $divSelectedVillager.appendChild(h3);
+  // function of div of similar villager(s)
 
-  villager.name;
-  console.log(villager.name);
+  // generating table with gender, personality and species
 };
 
 // calling functions
