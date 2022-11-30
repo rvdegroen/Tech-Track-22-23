@@ -151,7 +151,7 @@ h2 {
 input {
   height: 36px;
   width: 212px;
-  border: none;
+  border: 3px solid var(--filter-background);
   border-radius: 20px;
   padding: 5px 10px 5px 45px;
   background-color: var(--filter-text);
@@ -164,13 +164,13 @@ input::placeholder {
 }
 
 input:hover {
-  border: 2px solid var(--filter-text-transparent);
+  border: 3px solid var(--filter-text-transparent);
   transition: 0.3s;
 }
 
 input:active,
 input:focus {
-  border: 2px solid var(--filter-green);
+  border: 3px solid var(--filter-green);
   outline: none;
   color: var(--filter-green);
 }
@@ -205,13 +205,13 @@ option {
 
 select:active,
 select:focus {
-  border: 3px solid var(--filter-green-dark);
+  border: 3px solid var(--filter-green);
   outline: none;
   color: var(--filter-green);
 }
 
 select:hover {
-  border: 3px solid var(--filter-green);
+  border: 3px solid var(--filter-text-transparent);
 }
 
 /***Scrollbar styling***/
@@ -241,7 +241,7 @@ select:hover {
 button {
   height: 36px;
   min-width: auto;
-  border: none;
+  border: 3px solid var(--filter-background);
   border-radius: 5px;
   padding: 5px 20px 30px 20px;
   background-color: var(--filter-text);
@@ -252,14 +252,12 @@ button {
 
 button:active,
 button:focus {
-  background-color: var(--filter-green-dark);
-  color: var(--white);
+  border: 3px solid var(--filter-green);
   transition: 0.1s;
 }
 
 button:hover {
-  background-color: var(--filter-green);
-  color: var(--white);
+  border: 3px solid var(--filter-text-transparent);
   transition: 0.3s;
 }
 
