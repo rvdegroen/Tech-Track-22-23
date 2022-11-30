@@ -1,11 +1,8 @@
+// overview page
+
 // Importing
 // Our bundler automatically creates styling when imported in the main JS file!
 import "../styles/style.css";
-// We can use node_modules directely in the browser!
-import * as d3 from "d3";
-
-// Importing functions
-import { testFunction } from "./filter";
 
 // Data of villagers
 const fetchVillagers = async () => {
@@ -24,9 +21,18 @@ const $villagers = document.getElementById("villagers");
 
 //// Functions -  $ stands for html elements
 
-// FILTER FUNCTION ----------------------------------------------------------------------------------
-// function to put available genders in the dropdown menu as $option element
-const initializeGenders = async () => {
+// function for when you first load the page and get to see all villagers unfiltered
+const initializeVillagers = async () => {
+  // fetch villagers function
+  const villagers = await fetchVillagers();
+
+  for (const villager of villagers) {
+    createVillagerIcon(villager);
+  }
+};
+
+// function to put available genders, species and personalities in the dropdown menu as $option element
+const filterOptions = async () => {
   // fetch villagers function
   const villagers = await fetchVillagers();
 
@@ -37,7 +43,17 @@ const initializeGenders = async () => {
     (accumulator, currentValue) => [...accumulator, currentValue.gender],
     []
   );
+  const allPersonalities = villagers.reduce(
+    (accumulator, currentValue) => [...accumulator, currentValue.personality],
+    []
+  );
+  const allSpecies = villagers.reduce(
+    (accumulator, currentValue) => [...accumulator, currentValue.species],
+    []
+  );
+
   // I don't want duplicate values from allSpecies and turn it into an array, so I use Set: https://www.samanthaming.com/tidbits/43-3-ways-to-remove-array-duplicates/
+  // Initializing genders
   const uniqueGender = Array.from(new Set(allGender));
   // Make for every value in the array: uniqueSpecies an option for dropdown filter
   for (const gender of uniqueGender) {
@@ -46,21 +62,8 @@ const initializeGenders = async () => {
     option.textContent = gender;
     $gender.appendChild(option);
   }
-};
 
-// function to put available personalities in the dropdown menu as $option element
-const initializePersonalities = async () => {
-  // fetch villagers function
-  const villagers = await fetchVillagers();
-
-  // use ... to convert array into a set of arguments of a function
-  // filter is to take something out of the object
-  // reduce maps and filters in a single pass
-  const allPersonalities = villagers.reduce(
-    (accumulator, currentValue) => [...accumulator, currentValue.personality],
-    []
-  );
-  // I don't want duplicate values from allSpecies and turn it into an array, so I use Set: https://www.samanthaming.com/tidbits/43-3-ways-to-remove-array-duplicates/
+  // Initializing personalities
   const uniquePersonality = Array.from(new Set(allPersonalities));
   // Make for every value in the array: uniqueSpecies an option for dropdown filter
   for (const personality of uniquePersonality) {
@@ -68,30 +71,16 @@ const initializePersonalities = async () => {
     option.value = personality;
     option.textContent = personality;
     $personality.appendChild(option);
-  }
-};
 
-// function to put available species in the dropdown menu as $option element
-const initializeSpecies = async () => {
-  // fetch villagers function
-  const villagers = await fetchVillagers();
-
-  // use ... to convert array into a set of arguments of a function
-  // filter is to take something out of the object
-  // reduce maps and filters in a single pass
-  const allSpecies = villagers.reduce(
-    (accumulator, currentValue) => [...accumulator, currentValue.species],
-    []
-  );
-
-  // I don't want duplicate values from allSpecies and turn it into an array, so I use Set: https://www.samanthaming.com/tidbits/43-3-ways-to-remove-array-duplicates/
-  const uniqueSpecies = Array.from(new Set(allSpecies));
-  // Make for every value in the array: uniqueSpecies an option for dropdown filter
-  for (const species of uniqueSpecies) {
-    const option = document.createElement("option");
-    option.value = species;
-    option.textContent = species;
-    $species.appendChild(option);
+    // Initializing species
+    const uniqueSpecies = Array.from(new Set(allSpecies));
+    // Make for every value in the array: uniqueSpecies an option for dropdown filter
+    for (const species of uniqueSpecies) {
+      const option = document.createElement("option");
+      option.value = species;
+      option.textContent = species;
+      $species.appendChild(option);
+    }
   }
 };
 
@@ -106,16 +95,6 @@ const createVillagerIcon = (villager) => {
   anchor.appendChild(image);
   anchor.appendChild(p);
   $villagers.appendChild(anchor);
-};
-
-// function for when you first load the page and get to see all villagers unfiltered
-const initializeVillagers = async () => {
-  // fetch villagers function
-  const villagers = await fetchVillagers();
-
-  for (const villager of villagers) {
-    createVillagerIcon(villager);
-  }
 };
 
 // function for when you use the filter on the overview page
@@ -147,13 +126,10 @@ const filterVillager = async (event) => {
 };
 
 ////// calling functions
+filterOptions();
 initializeVillagers();
-initializeGenders();
-initializePersonalities();
-initializeSpecies();
 
-//// event listeners
-// dropdown filters on overview page
+//// event listeners of the dropdowns src: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/change_event
 $gender.addEventListener("change", (event) => filterVillager(event));
 $personality.addEventListener("change", (event) => filterVillager(event));
 $species.addEventListener("change", (event) => filterVillager(event));
