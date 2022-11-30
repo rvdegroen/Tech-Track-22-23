@@ -49,34 +49,8 @@ const showData = async () => {
     $detailsGender.classList.add("maleText");
   }
 
-  console.log(villager.personality);
-
-  // function for details color personalities
-
-  if (villager.personality === "Peppy") {
-    $detailsPersonality.classList.add("peppy");
-  }
-  if (villager.personality === "Cranky") {
-    $detailsPersonality.classList.add("cranky");
-  }
-  if (villager.personality === "Jock") {
-    $detailsPersonality.classList.add("jock");
-  }
-  if (villager.personality === "Snooty") {
-    $detailsPersonality.classList.add("snooty");
-  }
-  if (villager.personality === "Normal") {
-    $detailsPersonality.classList.add("normal");
-  }
-  if (villager.personality === "Smug") {
-    $detailsPersonality.classList.add("smug");
-  }
-  if (villager.personality === "Lazy") {
-    $detailsPersonality.classList.add("lazy");
-  }
-  if (villager.personality === "Uchi") {
-    $detailsPersonality.classList.add("uchi");
-  }
+  // For details color personalities
+  $detailsPersonality.classList.add(`${villager.personality.toLowerCase()}`);
 
   // details shown in table on bottom of page
   $detailsGender.textContent = villager.gender;
