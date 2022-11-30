@@ -17,6 +17,7 @@
         <ul>
           <li><a href="./index.html">Overview</a></li>
           <li><a href="./graph.html">Graph</a></li>
+          <li><a href="./bubble-chart.html">Bubble Chart</a></li>
         </ul>
       </nav>
       <div></div>
@@ -24,22 +25,18 @@
 
     <h2>Click or Search for a Villager</h2>
     <div id="filter">
-      <div class="search-bar">
-        <img src="./images/search-icon.svg" alt="" />
-        <input type="search" name="search" placeholder="Search by name" />
-      </div>
       <!-- How to select default value from: https://stackoverflow.com/questions/3518002/how-can-i-set-the-default-value-for-an-html-select-element-->
       <select id="gender">
         <!--using value "none", so I can check this later in my js-->
-        <option selected="selected" value="none">Any Gender</option>
+        <option selected="selected" value="none">Gender</option>
       </select>
 
       <select id="personality">
-        <option selected="selected" value="none">Any Personality</option>
+        <option selected="selected" value="none">Personality</option>
       </select>
 
       <select id="species">
-        <option selected="selected" value="none">Any Species</option>
+        <option selected="selected" value="none">Species</option>
       </select>
     </div>
 
