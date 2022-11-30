@@ -15,6 +15,17 @@
   --female-border: #ff9090;
   --male-border: #00b6a9;
   --red: #e74949;
+  /*personality colors*/
+  --peppy: #eeb366;
+  --cranky: #b84a4a;
+  --jock: #70aff8;
+  --snooty: #48d2b1;
+  --normal: #d5b696;
+  --smug: #9e55d7;
+  --lazy: #999999;
+  --uchi: #f87091;
+  /*species color*/
+  --species: #544747;
 }
 
 /***Fonts | downloaded from: https://archive.org/download/Fontworks/Fonts/ ***/
@@ -38,7 +49,6 @@ body {
   background: var(--background-color);
   font-family: sans-serif;
   color: var(--text-color);
-  height: 100em;
 }
 
 /***Nav styling***/
@@ -80,7 +90,7 @@ nav > ul > li {
   margin-top: 20px;
   border-bottom: 3px solid var(--white-transparent);
   text-align: center;
-  width: 100px;
+  min-width: 112px;
 }
 
 nav > ul > li:hover {
@@ -286,11 +296,93 @@ select:focus {
 /* villager name*/
 #selectedVillager > h3 {
   color: var(--white);
-  background-color: var(--female-border);
   width: 128px;
   border-radius: 1em;
   display: flex;
   justify-content: center;
 }
 
+.femaleVillager {
+  background-color: var(--female-border);
+}
+
+.maleVillager {
+  background-color: var(--male-border);
+}
+
+/* styling for table*/
+table {
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 6em;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0px 0px 10px var(--shadow-color);
+}
+
+th,
+td {
+  padding: 0.25em 1em;
+}
+
+/* for positioning the table in the center bottom*/
+.tableContainer {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+}
+
 /*styling for similar villagers*/
+
+/*details color classes*/
+#detailsSpecies {
+  color: var(--species);
+}
+
+.femaleText {
+  color: var(--female-border);
+}
+
+.maleText {
+  color: var(--male-border);
+}
+
+.peppy {
+  color: var(--peppy);
+}
+
+.cranky {
+  color: var(--cranky);
+}
+
+.jock {
+  color: var(--jock);
+}
+
+.peppy {
+  color: var(--peppy);
+}
+
+.snooty {
+  color: var(--snooty);
+}
+
+.normal {
+  color: var(--normal);
+}
+
+.smug {
+  color: var(--smug);
+}
+
+.lazy {
+  color: var(--lazy);
+}
+
+.uchi {
+  color: var(--uchi);
+}
