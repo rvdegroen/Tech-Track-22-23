@@ -1,15 +1,16 @@
 //stackoverflow.com/questions/71544439/how-do-i-get-vite-to-build-entire-project-instead-of-just-the-index-html-page/71553448#71553448
 import { defineConfig } from "vite";
+import { resolve } from "path";
 
-// source: https://vitejs.dev/config/#config-intellisense
+// source: https://vitejs.dev/config/#config-intellisense, https://vitejs.dev/guide/build.html#multi-page-app
 export default defineConfig({
   // ...
   build: {
     rollupOptions: {
       input: {
-        main: "./index.html",
-        barChart: "./graph.html",
-        bubbleChart: "./bubbleChart.html",
+        main: resolve(__dirname, "index.html"),
+        barChart: resolve(__dirname, "graph.html"),
+        bubbleChart: resolve(__dirname, "bubbleChart.html"),
 
         // ...
         // List all files you want in your build
