@@ -204,8 +204,6 @@ const fetchVillagers = async () => {
   // to console.log the villagers, use call the function with await, otherwise it returns a promise
 };
 
-console.log(await fetchVillagers());
-
 /*
 // function to count total of different gender villagers
 const countGender = await fetchVillagers.reduce(accumulator, currentValue) => {
