@@ -207,10 +207,14 @@ const fetchVillagers = async () => {
 console.log(await fetchVillagers());
 
 // function to count total of different gender villagers
-/*const countGender = await fetchVillagers.reduce(accumulator, currentValue) => {
-  // 
+const countGender = await fetchVillagers.reduce(accumulator, currentValue) => {
+  // accumulator + currentvalue, initialValue
+  // make new accumulator for all villagers
+  const newAccumulator = [...accumulator];
+  const { gender } = currentValue;
+  const (index === -1){newAccumulator.push({ gender, count: 1})}
   accumulator + currentValue, initialValue
-}*/
+}
 
 // function to count total of different personality villagers
 
