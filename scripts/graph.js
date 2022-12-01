@@ -22,9 +22,9 @@ const fetchVillagers = async () => {
 const showGender = async () => {
   const villagers = await fetchVillagers();
   const genderStatistics = villagers.reduce(
-    (accumulator, currentVillager) => {
+    (accumulator, currentValue) => {
       const newValueForAccumulator = [...accumulator];
-      const index = currentVillager.gender === "Male" ? 0 : 1;
+      const index = currentValue.gender === "Male" ? 0 : 1;
       newValueForAccumulator[index].count = newValueForAccumulator[index].count + 1;
       return newValueForAccumulator;
     },
@@ -44,6 +44,65 @@ const showGender = async () => {
     yLabel: "↑ Total villagers",
   });
 
+  d3.select("#barChart").node().innerHTML = "";
+  d3.select("#barChart").node().appendChild(myBarChart);
+};
+
+// when you click on the button, show the personality graphs
+const showPersonalities = async () => {
+  const villagers = await fetchVillagers();
+  const personalityStatistics = villagers.reduce((accumulator, currentValue) => {
+    const newValueForAccumulator = [...accumulator];
+    const { personality } = currentValue;
+    const index = accumulator.findIndex((object) => object.personality === personality);
+    if (index === -1) {
+      // species statistic does not exist yet in accumulator
+      newValueForAccumulator.push({ personality, count: 1 });
+    } else {
+      newValueForAccumulator[index].count = newValueForAccumulator[index].count + 1;
+    }
+    return newValueForAccumulator;
+  }, []);
+
+  const myBarChart = BarChart(personalityStatistics, {
+    x: (data) => data.personality,
+    y: (data) => data.count,
+    color: "steelblue",
+    width: 965,
+    height: 526,
+    // yFormat: "",
+    yLabel: "↑ Total villagers",
+  });
+  d3.select("#barChart").node().innerHTML = "";
+  d3.select("#barChart").node().appendChild(myBarChart);
+};
+
+// when you click on the button, show the species graphs
+const showSpecies = async () => {
+  const villagers = await fetchVillagers();
+  const speciesStatistics = villagers.reduce((accumulator, currentValue) => {
+    const newValueForAccumulator = [...accumulator];
+    const { species } = currentValue;
+    const index = accumulator.findIndex((object) => object.species === species);
+    if (index === -1) {
+      // species statistic does not exist yet in accumulator
+      newValueForAccumulator.push({ species, count: 1 });
+    } else {
+      newValueForAccumulator[index].count = newValueForAccumulator[index].count + 1;
+    }
+    return newValueForAccumulator;
+  }, []);
+
+  const myBarChart = BarChart(speciesStatistics, {
+    x: (data) => data.species,
+    y: (data) => data.count,
+    color: "steelblue",
+    width: 1550,
+    height: 526,
+    // yFormat: "",
+    yLabel: "↑ Total villagers",
+  });
+  d3.select("#barChart").node().innerHTML = "";
   d3.select("#barChart").node().appendChild(myBarChart);
 };
 
