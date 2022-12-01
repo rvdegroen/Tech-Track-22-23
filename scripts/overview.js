@@ -4,13 +4,16 @@
 // Our bundler automatically creates styling when imported in the main JS file!
 import "../styles/style.css";
 
+import { axiosInstance } from "./api";
+
 // Data of villagers
 const fetchVillagers = async () => {
   // fetch villagers
-  const response = await fetch("https://acnhapi.com/v1a/villagers/");
+  const response = await axiosInstance.get("/villagers");
   // save response as json in variable
-  const data = await response.json();
-  return data;
+  // const data = await response.json();
+  // return data;
+  return response.data;
   // to console.log the villagers, use call the function with await, otherwise it returns a promise
 };
 

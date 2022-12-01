@@ -4,7 +4,7 @@ import "../styles/style.css";
 // We can use node_modules directely in the browser!
 import * as d3 from "d3";
 
-import { fetchVillagers } from "./api";
+import { axiosInstance, fetchVillagers } from "./api";
 
 // how to get id from url: source: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
 const urlParams = new URLSearchParams(window.location.search);
@@ -13,10 +13,11 @@ const villagerId = urlParams.get("id");
 // Data of specific villagers
 const fetchVillager = async (id) => {
   // fetch villagers
-  const response = await fetch(`https://acnhapi.com/v1a/villagers/${id}`);
+  const response = await axiosInstance.get(`/villagers/${id}`);
   // save response as json in variable
-  const data = await response.json();
-  return data;
+  // const data = await response.json();
+  // return data;
+  return response.data;
 };
 
 //
