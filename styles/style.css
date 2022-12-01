@@ -362,6 +362,28 @@ td {
 
 /***styling for similar villagers***/
 
+/*similar villagers*/
+#similarVillagers {
+  display: flex;
+  justify-content: center;
+  margin-top: 17px;
+}
+
+#similarVillagers > a {
+  text-decoration: none;
+  margin: 0 6px 0 6px;
+}
+
+#similarVillagers > a > p {
+  box-shadow: 0px 0px 10px var(--shadow-color);
+  background-color: var(--white);
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
 /*details color classes*/
 #detailsSpecies {
   color: var(--species);
