@@ -253,7 +253,6 @@ button {
 button:active,
 button:focus {
   border: 3px solid var(--filter-green);
-  transition: 0.1s;
 }
 
 button:hover {
@@ -361,7 +360,7 @@ td {
   width: 100vw;
 }
 
-/*styling for similar villagers*/
+/***styling for similar villagers***/
 
 /*details color classes*/
 #detailsSpecies {
@@ -410,4 +409,12 @@ td {
 
 .uchi {
   color: var(--uchi);
+}
+
+/***bar chart styles***/
+#barChart,
+#bubbleChart {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
