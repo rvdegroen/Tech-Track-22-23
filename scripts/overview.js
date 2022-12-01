@@ -21,16 +21,6 @@ const $villagers = document.getElementById("villagers");
 
 //// Functions -  $ stands for html elements
 
-// function for when you first load the page and get to see all villagers unfiltered
-const initializeVillagers = async () => {
-  // fetch villagers function
-  const villagers = await fetchVillagers();
-
-  for (const villager of villagers) {
-    createVillagerIcon(villager);
-  }
-};
-
 // function to put available genders, species and personalities in the dropdown menu as $option element
 const filterOptions = async () => {
   // fetch villagers function
@@ -81,6 +71,16 @@ const filterOptions = async () => {
       option.textContent = species;
       $species.appendChild(option);
     }
+  }
+};
+
+// function for when you first load the page and get to see all villagers unfiltered
+const initializeVillagers = async () => {
+  // fetch villagers function
+  const villagers = await fetchVillagers();
+
+  for (const villager of villagers) {
+    createVillagerIcon(villager);
   }
 };
 
