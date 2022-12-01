@@ -201,20 +201,22 @@ const fetchVillagers = async () => {
   // save response as json in variable
   const data = await response.json();
   return data;
+  // to console.log the villagers, use call the function with await, otherwise it returns a promise
 };
 
-// fetch data of villagers with ACNH API
+console.log(await fetchVillagers());
 
-const jsonURL = "https://acnhapi.com/v1a/villagers/";
-d3.json(jsonURL, function (data) {
-  console.log(data);
-});
+// function to count total of different gender villagers
+/*const countGender = await fetchVillagers.reduce(accumulator, currentValue) => {
+  // 
+  accumulator + currentValue, initialValue
+}*/
 
-const allGender = villagers.reduce(
-  (accumulator, currentValue) => [...accumulator, currentValue.gender],
-  []
-);
+// function to count total of different personality villagers
 
+// function to count total of different species villagers
+
+/*
 const myBarChart = BarChart(villagers, {
   x: (data) => data.letter,
   y: (data) => data.frequency,
@@ -226,3 +228,4 @@ const myBarChart = BarChart(villagers, {
 });
 
 d3.select("#barChart").node().appendChild(myBarChart);
+*/
