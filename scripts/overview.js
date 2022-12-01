@@ -19,6 +19,7 @@ const $gender = document.getElementById("gender");
 const $personality = document.getElementById("personality");
 const $species = document.getElementById("species");
 const $villagers = document.getElementById("villagers");
+const $search = document.getElementById("search");
 
 //// Functions -  $ stands for html elements
 
@@ -105,6 +106,15 @@ const filterVillager = async (event) => {
   // fetch villagers function
   let villagers = await fetchVillagers();
 
+  // search bar
+  // if the user entered something, it will filter the villagers
+  if ($search.value !== "") {
+    villagers = villagers.filter((villager) =>
+      villager.name["name-EUen"].toLowerCase().startsWith($search.value.toLowerCase())
+    );
+  }
+  console.log($search.value, "value");
+
   // filter function for gender: only the villagers with the same gender value stays
   if ($gender.value !== "none") {
     villagers = villagers.filter((villager) => villager.gender === $gender.value);
@@ -134,3 +144,7 @@ initializeVillagers();
 $gender.addEventListener("change", (event) => filterVillager(event));
 $personality.addEventListener("change", (event) => filterVillager(event));
 $species.addEventListener("change", (event) => filterVillager(event));
+// only filters when it loses focus
+$search.addEventListener("change", (event) => filterVillager(event));
+// I don't want to constantly call the API, needs a debounce (time-out)
+// $search.addEventListener("input", (event) => filterVillager(event));
