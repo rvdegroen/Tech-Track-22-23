@@ -10,7 +10,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "index.html"),
         barChart: resolve(__dirname, "graph.html"),
-        bubbleChart: resolve(__dirname, "bubbleChart.html"),
+        bubbleChart: resolve(__dirname, "bubble-chart.html"),
+        villager: resolve(__dirname, "villager.html"),
 
         // ...
         // List all files you want in your build
