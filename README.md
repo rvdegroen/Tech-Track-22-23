@@ -28,12 +28,6 @@ I'll be talking step by step on how to deploy your website with Vercel (by using
 
 2. When you come on the landing page of Vercel, you have to click on "add new" then "project".
 
-[[/images/vercel1.png]]
-
 3. Then you can choose your Github repository that you want to deploy and click on "import".
 
-[[/images/vercel2.png]]
-
 4. Lastly you can change stuff if you want, but Vercel should be able to configure everything for you automatically and then you can click on "deploy".
-
-[[/images/vercel3.png]]
